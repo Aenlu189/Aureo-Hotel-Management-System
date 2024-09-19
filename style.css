@@ -1,0 +1,145 @@
+.align-fp {
+    color: black;
+    font-size: small;
+}
+
+.align{
+    text-align: left;
+}
+
+.label {
+    padding: 30px;
+    font: 50px Brown;
+    font-weight: bold;
+    color: white;
+}
+
+.welcomeLabel{
+    font: 50px Brown;
+    min-font-size: 30px;
+    color: white;
+}
+
+.fPassword{
+    text-decoration: none;
+    color: black;
+    font-weight: lighter;
+}
+
+.cPassword{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.form-text{
+    font-weight:lighter;
+}
+
+.full-height-container {
+    height: 100vh;
+}
+
+.full-height {
+    height: 80%;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.middle-column-R{
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 20px 20px 0 rgba(0, 0, 0, 0.2), 0 0 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 20px;
+    border-radius: 10px;
+    min-width: 400px;
+    max-width: 700px;
+    min-height: 550px;
+    flex-grow: 1;
+}
+
+.form-control{
+    height: 50px;
+}
+
+.no-outline{
+    border: none;
+    box-shadow: none;
+}
+
+.align-form{
+    text-align: left;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.background{
+    background: linear-gradient(to bottom right, #44000B, #E0455F, #e0986e, #e6a600);
+    height: 80%
+}
+
+
+.button-62 {
+    min-width: 90%;
+    height: 40px;
+    background: linear-gradient(to bottom right, #EF4765, #FF9A5A);
+    border: 0;
+    border-radius: 20px;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 2.5;
+    outline: transparent;
+    padding: 0 1rem;
+    text-align: center;
+    text-decoration: none;
+    transition: box-shadow .2s ease-in-out;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+}
+
+.button-62:not([disabled]):focus {
+    box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+}
+
+.button-62:not([disabled]):hover {
+    box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+}
+
+.width-sign-in{
+    width: 300px;
+    height: 300px;
+}
+
+#showLogInPassword, #showLogInPassword2{
+    width: 1.2em;
+}
+
+
+#toggleButton, #toggleButton2{
+    background-color: white;
+}
+
+.info{
+    text-align: left;
+    font-weight: lighter;
+    width: 90%;
+    text-justify: distribute-all-lines;
+}
+
+.dhaccount{
+    font-weight: lighter;
+}
