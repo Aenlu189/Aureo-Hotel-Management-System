@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Calendar with Events</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* General styling */
+    body {
+      font-family: Arial, sans-serif;
+    }
+    h1 {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    /* Calendar styles */
+    .calendar {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 1px;
+      background-color: #ddd;
+      max-width: 1000px;
+      margin: 20px auto;
+    }
+    .day {
+      background: #fff;
+      padding: 20px;
+      text-align: center;
+      border: 1px solid #ddd;
+      position: relative;
+    }
+    .day-header {
+      background: #f0f0f0;
+      font-weight: bold;
+      padding: 10px;
+    }
+    .event {
+      margin: 5px 0;
+      padding: 5px;
+      background: #0d6efd;
+      color: #fff;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+
+    /* Mobile Styles */
+    @media (max-width: 600px) {
+      .calendar {
+        display: block;
+      }
+      .day {
+        padding: 10px;
+        border: none;
+        border-bottom: 1px solid #ddd;
+      }
+      .day-header {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+<h1>Responsive Calendar</h1>
+
+<!-- Calendar Container -->
+<div id="calendar" class="calendar"></div>
+
+<!-- Bootstrap Modal for Adding Events -->
+<div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="eventModalLabel">Add Event</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="eventForm">
+          <div class="mb-3">
+            <label for="eventName" class="form-label">Event Name</label>
+            <input type="text" class="form-control" id="eventName" required>
+          </div>
+          <input type="hidden" id="selectedDay">
+          <button type="submit" class="btn btn-primary">Save Event</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  const calendarElement = document.getElementById('calendar');
+  const eventForm = document.getElementById('eventForm');
+  const eventNameInput = document.getElementById('eventName');
+  const selectedDayInput = document.getElementById('selectedDay');
+  const eventModal = new bootstrap.Modal(document.getElementById('eventModal'));
+  const currentDate = new Date();
+  let events = JSON.parse(localStorage.getItem('calendarEvents')) || [];
+
+  function createCalendar() {
+    // Clear existing calendar
+    calendarElement.innerHTML = '';
+
+    // Create day headers
+    const daysOfWeek = ['Sun', 'Mon', Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+      daysOfWeek.forEach(day => {
+        const dayHeader = document.createElement('div');
+        dayHeader.className = 'day-header';
+        dayHeader.innerText = day;
+        calendarElement.appendChild(dayHeader);
+      });
+
+    // Calculate days in the current month
+    const firstDayIndex = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay();
+    const lastDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
+
+    // Add blank days before the first day of the month
+    for (let i = 0; i < firstDayIndex; i++) {
+      const emptyDay = document.createElement('div');
+      emptyDay.className = 'day';
+      calendarElement.appendChild(emptyDay);
+    }
+
+    // Create days of the month
+    for (let i = 1; i <= lastDate; i++) {
+      const dayElement = document.createElement('div');
+      dayElement.className = 'day';
+      dayElement.innerHTML = `<span>${i}</span>`;
+
+      // Show modal to add events when clicking a day
+      dayElement.onclick = () => openAddEventModal(i);
+
+      // Add events for this day
+      const dayEvents = events.filter(event => event.day === i && event.month === currentDate.getMonth());
+      dayEvents.forEach(event => {
+        const eventElement = document.createElement('div');
+        eventElement.className = 'event';
+        eventElement.innerText = event.name;
+        dayElement.appendChild(eventElement);
+      });
+
+      calendarElement.appendChild(dayElement);
+    }
+  }
+
+  function openAddEventModal(day) {
+    selectedDayInput.value = day;
+    eventModal.show();
+  }
+
+  // Handle event submission
+  eventForm.onsubmit = function (e) {
+    e.preventDefault();
+    const eventName = eventNameInput.value;
+    const selectedDay = parseInt(selectedDayInput.value);
+
+    // Save event
+    events.push({
+      day: selectedDay,
+      month: currentDate.getMonth(),
+      year: currentDate.getFullYear(),
+      name: eventName
+    });
+    localStorage.setItem('calendarEvents', JSON.stringify(events));
+
+    // Reset form and close modal
+    eventNameInput.value = '';
+    eventModal.hide();
+
+    // Re-render calendar
+    createCalendar();
+  };
+
+  // Initialize calendar
+  createCalendar();
+</script>
+</body>
+</html>

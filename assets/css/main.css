@@ -1,0 +1,207 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.logo{
+    margin: 0;
+}
+
+.dark-scheme{
+    background-color: #2d2d30;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.top-navbar {
+    background: linear-gradient(to bottom right, #44000B, #E0455F, #e0986e, #e6a600);
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    z-index: 1000;
+    border-bottom: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+}
+
+.table {
+    border: 1px solid #ccc;
+}
+
+.nav-link {
+    color: white;
+}
+
+.nav-link:hover {
+    color: white;
+}
+
+.sidebar {
+    top: 70px;
+    height: 100vh;
+    background-color: #3e3e42;
+    color: white;
+    padding-top: 20px;
+    position: fixed;
+}
+
+.nav-size{
+    padding-bottom: 10px;
+}
+
+.sidebar .nav-link {
+    color: white;
+}
+
+.sidebar .nav-link:hover {
+    background-color: #ff4d4d;
+    color: white;
+}
+
+.main-content {
+    padding: 20px;
+    color: white;
+    top: 70px
+
+}
+
+td{
+    color: white;
+}
+
+.name{
+    font-weight: bold;
+    font: 50px Brown;
+    color: white;
+}
+
+.sub-bg{
+    color: white;
+}
+
+.table1{
+    background: #E0455F;
+}
+
+.table2{
+    background: #e6a600;
+}
+
+.totalValue, .total{
+    text-align: center;
+}
+
+.room-button {
+    width: 80px;
+    height: 80px;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    margin: 10px;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.room-button.available {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.room-button.occupied {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.room-button.maintenance {
+    background-color: #ffc107;
+    color: #fff;
+}
+
+.room-button.cleaning {
+    background-color: #17a2b8;
+    color: #fff;
+}
+
+.dashboard-container {
+    padding: 20px;
+}
+
+.floor-section {
+    margin-bottom: 30px;
+}
+
+.room-status {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.calendar-container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 0px;
+    border-radius: 10px;
+    background-color: #2d2d30;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.calendar-header {
+    text-align: center;
+    padding: 10px 0;
+    color: #f8f9fa;
+}
+.calendar-iframe {
+    width: 100%;
+    height: 700px;
+    border: 1px solid #2d2d30;
+    border-radius: 8px;
+}
+
+.btn-custom {
+    background-color: #343a40;
+    color: #f8f9fa;
+    border: none;
+}
+.btn-custom:hover {
+    background-color: #495057;
+}
+
+.calendar-container {
+    position: relative;
+    max-width: 120vh; /* Adjust width as needed */
+    height: 70vh; /* Adjust height as needed */
+    overflow: hidden;
+}
+
+/* Optional: Hide the entire iframe if error message is present */
+.calendar-container iframe {
+    display: block; /* Show the iframe by default */
+}
+
+.calendar-container iframe:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0); /* Transparent overlay */
+    z-index: 1;
+    display: none;
+}
+
+/* Hide iframe or show overlay if an error occurs (using JavaScript) */
+.calendar-error iframe {
+    display: none; /* Hide iframe on error */
+}
+
+/* Style for an error state */
+.calendar-error iframe:after {
+    display: block; /* Show overlay if error occurs */
+    background: rgba(255, 255, 255, 0.8); /* Semi-transparent overlay */
+    color: #333;
+    font-size: 18px;
+    text-align: center;
+    line-height: 600px; /* Align text vertically */
+}
